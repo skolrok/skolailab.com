@@ -266,7 +266,7 @@ function HomeContent({ t, openFaqIndex, setOpenFaqIndex, setIsContactModalOpen }
             transition={{ duration: 0.8, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
             className="flex flex-wrap justify-center gap-4 text-xs sm:text-sm font-mono text-gray-300 mb-12"
           >
-            {t.hero.tags.map((tag: string, i: number) => (
+            {t.hero.tags.map((tag, i) => (
               <span 
                 key={i} 
                 className="cursor-default transition-colors duration-300 hover:text-[#00f0ff] hover:drop-shadow-[0_0_10px_rgba(0,240,255,0.8)]"
@@ -317,7 +317,7 @@ function HomeContent({ t, openFaqIndex, setOpenFaqIndex, setIsContactModalOpen }
 
           {/* Right Side: Scrollable Cards */}
           <div className="lg:w-1/2 flex flex-col gap-8">
-            {t.arsenal.cards.map((card: any, idx: number) => (
+            {t.arsenal.cards.map((card, idx) => (
                <motion.a
                  href="/showroom"
                  key={idx}
@@ -365,7 +365,7 @@ function HomeContent({ t, openFaqIndex, setOpenFaqIndex, setIsContactModalOpen }
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-12 md:gap-8 lg:gap-16">
-          {t.protocol.steps.map((step: any, idx: number) => (
+          {t.protocol.steps.map((step, idx) => (
             <motion.div 
               key={idx}
               initial={{ opacity: 0, y: 40 }}
@@ -455,7 +455,7 @@ function HomeContent({ t, openFaqIndex, setOpenFaqIndex, setIsContactModalOpen }
               transition={{ duration: 0.8, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
               className="font-display text-3xl md:text-4xl lg:text-5xl font-bold uppercase tracking-tight leading-[1.2] mb-8 transform-gpu will-change-transform"
             >
-              {t.vision.quote.split('.').map((part: string, i: number, arr: string[]) => (
+              {t.vision.quote.split('.').map((part, i, arr) => (
                 <React.Fragment key={i}>
                   {part}{i < arr.length - 1 ? '.' : ''}
                   {i === 0 && <br />}
@@ -513,7 +513,7 @@ function HomeContent({ t, openFaqIndex, setOpenFaqIndex, setIsContactModalOpen }
           transition={{ duration: 0.8, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
           className="border-t border-white/10 transform-gpu will-change-transform"
         >
-          {t.faq.items.map((faq: any, index: number) => (
+          {t.faq.items.map((faq, index) => (
             <AccordionItem 
               key={index}
               question={faq.question}

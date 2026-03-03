@@ -59,11 +59,14 @@ export default function ContactModal({ isOpen, onClose }: { isOpen: boolean; onC
                     {t.contact.subtitle}
                   </p>
 
-                  <form onSubmit={handleSubmit} className="flex flex-col gap-6">
+                  <form action="https://api.web3forms.com/submit" method="POST" onSubmit={handleSubmit} className="flex flex-col gap-6">
+                    <input type="hidden" name="access_key" value="274f2d37-ff0b-46e2-9215-475914fb26b8" />
+                    
                     <div className="flex flex-col gap-2">
                       <label className="font-mono text-xs text-cyan-500 uppercase tracking-widest">{t.contact.name}</label>
                       <input 
                         type="text" 
+                        name="name"
                         required
                         className="w-full bg-black border border-white/10 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-cyan-500 focus:shadow-[0_0_15px_rgba(6,182,212,0.3)] transition-all duration-300"
                       />
@@ -73,6 +76,7 @@ export default function ContactModal({ isOpen, onClose }: { isOpen: boolean; onC
                       <label className="font-mono text-xs text-cyan-500 uppercase tracking-widest">{t.contact.email}</label>
                       <input 
                         type="email" 
+                        name="email"
                         required
                         className="w-full bg-black border border-white/10 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-cyan-500 focus:shadow-[0_0_15px_rgba(6,182,212,0.3)] transition-all duration-300"
                       />
@@ -81,6 +85,7 @@ export default function ContactModal({ isOpen, onClose }: { isOpen: boolean; onC
                     <div className="flex flex-col gap-2">
                       <label className="font-mono text-xs text-cyan-500 uppercase tracking-widest">{t.contact.interest}</label>
                       <select 
+                        name="interest"
                         required
                         defaultValue=""
                         className="w-full bg-black border border-white/10 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-cyan-500 focus:shadow-[0_0_15px_rgba(6,182,212,0.3)] transition-all duration-300 appearance-none"
@@ -96,6 +101,7 @@ export default function ContactModal({ isOpen, onClose }: { isOpen: boolean; onC
                     <div className="flex flex-col gap-2">
                       <label className="font-mono text-xs text-cyan-500 uppercase tracking-widest">{t.contact.message}</label>
                       <textarea 
+                        name="message"
                         required
                         rows={4}
                         className="w-full bg-black border border-white/10 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-cyan-500 focus:shadow-[0_0_15px_rgba(6,182,212,0.3)] transition-all duration-300 resize-none"

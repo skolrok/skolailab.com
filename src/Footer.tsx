@@ -37,12 +37,13 @@ export default function Footer({ onOpenContact }: { onOpenContact: () => void })
             </span>
           </a>
 
-          <a href="mailto:info@skolailab.com" className="hover:text-cyan-500 transition-colors">
-  info@skolailab.com
-</a>
+          <a 
+            href="mailto:info@skolailab.com" 
+            className="group flex flex-col items-center md:items-start transition-all duration-300"
+          >
             <span className="text-gray-500 text-sm font-mono mb-2 uppercase tracking-widest group-hover:text-white transition-colors duration-300">{t.footer.email}</span>
             <span className="font-display text-3xl md:text-4xl lg:text-5xl font-bold text-white group-hover:text-[#00f0ff] group-hover:drop-shadow-[0_0_20px_rgba(0,240,255,0.6)] transition-all duration-300">
-              [ Tvoj bodoči premium e-mail ]
+              info@skolailab.com
             </span>
           </a>
         </motion.div>
