@@ -4,13 +4,18 @@
  */
 
 import { motion } from 'motion/react';
-import React from 'react';
+import React, { useEffect } from 'react';
 import Navbar from './Navbar';
 import CustomCursor from './CustomCursor';
 import { useLanguage } from './LanguageContext';
 
 export default function Vibecoding({ onOpenContact }: { onOpenContact?: () => void }) {
-  const { t } = useLanguage();
+  const { t } = useLanguage() as any;
+
+  useEffect(() => {
+    document.title = "Manifest | SKOL AI Kreativni Studio";
+  }, []);
+
   return (
     <div className="min-h-screen bg-[#0a0a0a] text-white font-sans selection:bg-cyan-500/30">
       <CustomCursor />
@@ -51,7 +56,7 @@ export default function Vibecoding({ onOpenContact }: { onOpenContact?: () => vo
           transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
           className="font-display text-2xl md:text-3xl lg:text-4xl font-medium leading-relaxed text-gray-300 transform-gpu will-change-transform"
         >
-          "Klasične agencije so prepočasne in predrage. Mi ne pišemo vrstic kode, mi gradimo digitalne ekosisteme z umetno inteligenco in vibecodingom. Rezultat? Hiper-realistične vizualije in bliskovite spletne strani v delčku časa."
+          {t.manifest.quote}
         </motion.p>
       </section>
 
@@ -68,7 +73,7 @@ export default function Vibecoding({ onOpenContact }: { onOpenContact?: () => vo
             className="w-full lg:w-5/12 aspect-[3/4] bg-neutral-900 rounded-2xl relative overflow-hidden border border-white/10 shadow-2xl group transform-gpu will-change-transform"
           >
             <img 
-              src="https://res.cloudinary.com/ddl75cyhk/image/upload/v1772532610/rok-skol-ai-kreativni-studio-direktor_z5inpr.png" 
+              src="https://i.ibb.co/LDznGTZd/rok-skol-ai-kreativni-studio-direktor.png" 
               alt="Rok Skol - Kreativni vodja in ustanovitelj SKOL AI" 
               className="w-full h-full object-cover object-center opacity-90 mix-blend-luminosity transition-all duration-700 group-hover:opacity-100 group-hover:scale-105"
               referrerPolicy="no-referrer"
@@ -84,15 +89,9 @@ export default function Vibecoding({ onOpenContact }: { onOpenContact?: () => vo
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, amount: 0.1 }}
               transition={{ duration: 0.8, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
-              className="font-display text-4xl md:text-5xl lg:text-6xl font-bold uppercase tracking-tight leading-[1.1] mb-12 text-white transform-gpu will-change-transform"
+              className="font-display text-4xl md:text-5xl lg:text-6xl font-bold uppercase tracking-tight leading-[1.1] mb-12 text-white drop-shadow-lg transform-gpu will-change-transform"
             >
-              {t.vision.quote.split('.').map((part, i, arr) => (
-                <React.Fragment key={i}>
-                  {part}{i < arr.length - 1 ? '.' : ''}
-                  {i === 0 && <br />}
-                  {i === 1 && <span className="text-transparent bg-clip-text bg-gradient-to-r from-white to-gray-500">{part}</span>}
-                </React.Fragment>
-              ))}
+              {t.vision.quote}
             </motion.h2>
 
             <motion.div
