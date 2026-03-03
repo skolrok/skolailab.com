@@ -23,13 +23,13 @@ jobs:
       - name: Setup Node
         uses: actions/setup-node@v4
         with:
-          node-version: 18
-      - name: Install dependencies and Build
+          node-version: 20
+      - name: Install dependencies
         run: |
           rm -f package-lock.json
-          rm -rf node_modules
           npm install
-          npm run build
+      - name: Build
+        run: npm run build
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
