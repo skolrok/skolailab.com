@@ -5,55 +5,16 @@
 
 import { motion, AnimatePresence } from 'motion/react';
 import React, { useState, useRef, useEffect, MouseEvent, TouchEvent } from 'react';
-import { ChevronDown, Instagram, Linkedin } from 'lucide-react';
+import { ChevronDown, Instagram, Facebook } from 'lucide-react';
+import { Routes, Route, useLocation, Link, Navigate } from 'react-router-dom';
 import Storitve from './Storitve';
 import Showroom from './Showroom';
 import Vibecoding from './Vibecoding';
-import { HashRouter, Routes, Route, useLocation } from 'react-router-dom';
 import Navbar from './Navbar';
 import ContactModal from './ContactModal';
 import CustomCursor from './CustomCursor';
 import Preloader from './Preloader';
-import Footer from './Footer';
 import { useLanguage } from './LanguageContext';
-
-const arsenalCards = [
-  {
-    title: "AI FOTOGRAFIJA IN STOCK PO MERI",
-    description: "Ustvarjamo 100% unikatne, hiper-realistične vizualije za vašo znamko, ki ne obstajajo nikjer drugje. Osebno, prilagojeno, brez stroškov klasične produkcije.",
-    href: "/storitve#ai-stock"
-  },
-  {
-    title: "HIGH-PERFORMANCE OGLASNE KREATIVE",
-    description: "Agresivna, scroll-stopping estetika narejena za A/B testiranje. Ustavljamo drsenje in drastično nižamo ceno vašega klika.",
-    href: "/storitve#oglasi"
-  },
-  {
-    title: "VIRTUALNI VPLIVNEŽI IN AI MODELI",
-    description: "Zgradite popolnega digitalnega ambasadorja za vašo znamko. 24/7 prisotnost in popolna vizualna konzistentnost brez dram.",
-    href: "/storitve#vplivnezi"
-  },
-  {
-    title: "PREMIUM IZDELAVA SPLETNIH STRANI",
-    description: "Z najsodobnejšim spletnim inženiringom gradimo bliskovito hitre, dominantne \"landing\" strani, ki obiskovalca brez trenja spremenijo v kupca.",
-    href: "/storitve#spletne-strani"
-  }
-];
-
-const faqData = [
-  {
-    question: "Kdo si lasti avtorske pravice za AI generirane vizualije?",
-    answer: "Vi. Ko za vašo znamko ustvarimo AI stock fotografije ali virtualne vplivneže, dobite polne komercialne pravice. Brez skritih licenc, brez omejitev uporabe."
-  },
-  {
-    question: "Kako hitro je lahko naša nova spletna stran na spletu?",
-    answer: "Z uporabo najsodobnejšega \"vibecodinga\" drastično skrajšamo čas razvoja. Naše premium spletne strani so običajno postavljene in optimizirane v nekaj tednih, ne mesecih."
-  },
-  {
-    question: "Lahko AI res nadomesti klasično fotografiranje produktov?",
-    answer: "Popolnoma. Naši high-performance oglasi in AI vizualije dosegajo hiper-realizem. Prihranite pri stroških studiev in modelov, hkrati pa dobite neskončne možnosti variacij."
-  }
-];
 
 function BeforeAfterSlider() {
   const [sliderPosition, setSliderPosition] = useState(50);
@@ -87,7 +48,7 @@ function BeforeAfterSlider() {
       {/* After Image (Background) */}
       <div className="absolute inset-0 w-full h-full">
         <img 
-          src="https://res.cloudinary.com/ddl75cyhk/image/upload/v1772532608/skol-ai-kreativni-studio-umetna-inteligenca-oglasi_ibb8jq.webp" 
+          src="https://i.ibb.co/4n6SC4zY/skol-ai-kreativni-studio-umetna-inteligenca-oglasi.webp" 
           alt="skol ai kreativni studio umetna inteligenca oglasi" 
           className="w-full h-full object-cover object-top" 
           referrerPolicy="no-referrer" 
@@ -103,7 +64,7 @@ function BeforeAfterSlider() {
         style={{ clipPath: `inset(0 ${100 - sliderPosition}% 0 0)` }}
       >
         <img 
-          src="https://res.cloudinary.com/ddl75cyhk/image/upload/v1772532608/izdelava-spletnih-strani-slabe-fotografije-prej_tojpdq.webp" 
+          src="https://i.ibb.co/5hTh3PMY/izdelava-spletnih-strani-slabe-fotografije-prej.webp" 
           alt="izdelava spletnih strani slabe fotografije prej" 
           className="w-full h-full object-cover object-top" 
           referrerPolicy="no-referrer" 
@@ -129,7 +90,7 @@ function BeforeAfterSlider() {
   );
 }
 
-function AccordionItem({ question, answer, isOpen, onClick }: { question: string, answer: string, isOpen: boolean, onClick: () => void, key?: string | number }) {
+function AccordionItem({ question, answer, isOpen, onClick }: { question: string, answer: string, isOpen: boolean, onClick: () => void, key?: any }) {
   return (
     <div className="border-b border-white/10">
       <button 
@@ -166,72 +127,102 @@ function AccordionItem({ question, answer, isOpen, onClick }: { question: string
   );
 }
 
-export default function App() {
+function Footer({ onOpenContact }: { onOpenContact: () => void }) {
+  const { t } = useLanguage() as any;
   return (
-    <HashRouter>
-      <AppContent />
-    </HashRouter>
-  );
-}
+    <footer id="kontakt" className="relative bg-[#000000] pt-32 pb-12 px-6 md:px-12 overflow-hidden border-t border-white/5">
+      <div className="max-w-7xl mx-auto flex flex-col items-center">
+        
+        <motion.h1 
+          onClick={onOpenContact}
+          initial={{ opacity: 0, scale: 0.95 }}
+          whileInView={{ opacity: 1, scale: 1 }}
+          viewport={{ once: true, amount: 0.1 }}
+          transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
+          className="font-display text-6xl sm:text-7xl md:text-8xl lg:text-[10rem] font-black uppercase text-center leading-[0.85] tracking-tighter w-full mb-20 text-white cursor-pointer hover:text-[#00f0ff] hover:drop-shadow-[0_0_30px_rgba(0,240,255,0.5)] transition-all duration-500 transform-gpu will-change-transform whitespace-pre-line"
+        >
+          {t.footer.cta}
+        </motion.h1>
 
-function AppContent() {
-  const { t } = useLanguage();
-  const location = useLocation();
-  const [openFaqIndex, setOpenFaqIndex] = useState<number | null>(null);
-  const [isContactModalOpen, setIsContactModalOpen] = useState(false);
-  const [isLoading, setIsLoading] = useState(() => {
-    return !sessionStorage.getItem('preloaderShown');
-  });
+        <motion.div 
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.1 }}
+          transition={{ duration: 0.8, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
+          className="flex flex-col md:flex-row items-center md:items-start justify-center gap-8 md:gap-24 mb-32 w-full transform-gpu will-change-transform"
+        >
+          <a 
+            href="tel:+38631295869" 
+            className="group flex flex-col items-center md:items-start transition-all duration-300"
+          >
+            <span className="text-gray-500 text-sm font-mono mb-2 uppercase tracking-widest group-hover:text-white transition-colors duration-300">{t.footer.phone}</span>
+            <span className="font-display text-3xl md:text-4xl lg:text-5xl font-bold text-white group-hover:text-[#00f0ff] group-hover:drop-shadow-[0_0_20px_rgba(0,240,255,0.6)] transition-all duration-300">
+              +386 31 295 869
+            </span>
+          </a>
 
-  const handlePreloaderComplete = () => {
-    sessionStorage.setItem('preloaderShown', 'true');
-    setIsLoading(false);
-  };
+          <a 
+            href="mailto:info@skolailab.com" 
+            className="group flex flex-col items-center md:items-start transition-all duration-300"
+          >
+            <span className="text-gray-500 text-sm font-mono mb-2 uppercase tracking-widest group-hover:text-white transition-colors duration-300">{t.footer.email}</span>
+            <span className="font-display text-3xl md:text-4xl lg:text-5xl font-bold text-white group-hover:text-[#00f0ff] group-hover:drop-shadow-[0_0_20px_rgba(0,240,255,0.6)] transition-all duration-300">
+              info@skolailab.com
+            </span>
+          </a>
+        </motion.div>
 
-  // Scroll to top on route change
-  useEffect(() => {
-    window.scrollTo(0, 0);
-  }, [location.pathname]);
+        {/* Pravni del */}
+        <div className="w-full border-t border-white/10 pt-8 flex flex-col md:flex-row items-center justify-between gap-6">
+          <p className="font-mono text-xs text-gray-500 tracking-wider">
+            {t.footer.rights}
+          </p>
+          <div className="flex items-center gap-6">
+            <a 
+              href="https://www.instagram.com/skolailab?igsh=dTZxcWNxZDYzZW11&utm_source=qr" 
+              target="_blank" 
+              rel="noopener noreferrer"
+              className="text-gray-500 hover:text-[#00f0ff] hover:drop-shadow-[0_0_10px_rgba(0,240,255,0.8)] hover:scale-110 transition-all duration-300" 
+              aria-label="Instagram"
+            >
+              <Instagram size={20} />
+            </a>
+            <a 
+              href="https://www.facebook.com/share/18CDHoEXnV/?mibextid=wwXIfr" 
+              target="_blank" 
+              rel="noopener noreferrer"
+              className="text-gray-500 hover:text-[#ff00ff] hover:drop-shadow-[0_0_10px_rgba(255,0,255,0.8)] hover:scale-110 transition-all duration-300" 
+              aria-label="Facebook"
+            >
+              <Facebook size={20} />
+            </a>
+          </div>
+        </div>
 
-  const pageContent = () => {
-    return (
-      <div className="min-h-screen bg-[#0a0a0a] text-white font-sans selection:bg-cyan-500/30">
-        <CustomCursor />
-        <Navbar />
-        <ContactModal isOpen={isContactModalOpen} onClose={() => setIsContactModalOpen(false)} />
-
-        <Routes>
-          <Route path="/storitve" element={<Storitve onOpenContact={() => setIsContactModalOpen(true)} />} />
-          <Route path="/showroom" element={<Showroom onOpenContact={() => setIsContactModalOpen(true)} />} />
-          <Route path="/vibecoding" element={<Vibecoding onOpenContact={() => setIsContactModalOpen(true)} />} />
-          <Route path="/" element={<HomeContent t={t} openFaqIndex={openFaqIndex} setOpenFaqIndex={setOpenFaqIndex} setIsContactModalOpen={setIsContactModalOpen} />} />
-        </Routes>
-
-        <Footer onOpenContact={() => setIsContactModalOpen(true)} />
       </div>
-    );
-  };
-
-  return (
-    <AnimatePresence mode="wait">
-      {isLoading ? (
-        <Preloader key="preloader" onComplete={handlePreloaderComplete} />
-      ) : (
-        pageContent()
-      )}
-    </AnimatePresence>
+    </footer>
   );
 }
 
-function HomeContent({ t, openFaqIndex, setOpenFaqIndex, setIsContactModalOpen }: any) {
+function HomeContent({ onOpenContact }: { onOpenContact: () => void }) {
+  const { t } = useLanguage() as any;
+  const [openFaqIndex, setOpenFaqIndex] = useState<number | null>(null);
+
+  useEffect(() => {
+    document.title = "Domov | SKOL AI Kreativni Studio";
+  }, []);
+
   return (
-    <>
+    <div className="min-h-screen bg-[#0a0a0a] text-white font-sans selection:bg-cyan-500/30">
+      <CustomCursor />
+      <Navbar />
+      
       {/* 1. Hero Section: VIZUALNA DOMINACIJA */}
       <main className="relative flex flex-col items-center justify-center min-h-screen px-6 pt-20 text-center md:px-12 overflow-hidden">
         {/* Background Image */}
         <div className="absolute inset-0 w-full h-full z-0 transform-gpu will-change-transform">
           <img 
-            src="https://res.cloudinary.com/ddl75cyhk/image/upload/v1772532610/skol-ai-izdelava-spletnih-strani-hero-ozadje_ybaeam.webp" 
+            src="https://i.ibb.co/hF19Y8cb/skol-ai-izdelava-spletnih-strani-hero-ozadje.webp" 
             alt="Hero Background" 
             className="w-full h-full object-cover opacity-40 md:mix-blend-screen transform-gpu will-change-transform"
             referrerPolicy="no-referrer"
@@ -283,7 +274,7 @@ function HomeContent({ t, openFaqIndex, setOpenFaqIndex, setIsContactModalOpen }
             className="flex flex-col items-center gap-8"
           >
             <motion.button 
-              onClick={() => setIsContactModalOpen(true)}
+              onClick={onOpenContact}
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
               className="relative group px-10 py-5 bg-[#0a0a0a] border border-[#00f0ff] text-[#00f0ff] font-mono text-lg font-bold tracking-widest uppercase overflow-hidden transition-all duration-300 hover:shadow-[0_0_15px_rgba(0,240,255,0.5)] hover:bg-[#00f0ff]/5 inline-block"
@@ -297,7 +288,7 @@ function HomeContent({ t, openFaqIndex, setOpenFaqIndex, setIsContactModalOpen }
       </main>
 
       {/* 2. Sekcija: NAŠ ARZENAL */}
-      <section className="relative px-6 py-24 md:px-12 lg:py-40 max-w-7xl mx-auto">
+      <section id="arzenal" className="relative px-6 py-24 md:px-12 lg:py-40 max-w-7xl mx-auto">
         <div className="flex flex-col lg:flex-row gap-16 lg:gap-24">
           
           {/* Left Side: Sticky Title */}
@@ -317,25 +308,32 @@ function HomeContent({ t, openFaqIndex, setOpenFaqIndex, setIsContactModalOpen }
 
           {/* Right Side: Scrollable Cards */}
           <div className="lg:w-1/2 flex flex-col gap-8">
-            {t.arsenal.cards.map((card, idx) => (
-               <motion.a
-                 href="/showroom"
+            {t.arsenal.cards.map((card, idx) => {
+               const ids = ['ai-stock', 'oglasi', 'vplivnezi', 'spletne-strani'];
+               return (
+               <Link
+                 to="/storitve"
+                 state={{ scrollTo: ids[idx] }}
                  key={idx}
-                 initial={{ opacity: 0, y: 50 }}
-                 whileInView={{ opacity: 1, y: 0 }}
-                 viewport={{ once: true, amount: 0.1 }}
-                 transition={{ duration: 0.6, delay: idx * 0.1, ease: [0.16, 1, 0.3, 1] }}
-                 whileHover={{ scale: 1.05 }}
-                 className="block p-8 rounded-2xl bg-black/90 md:bg-white/5 backdrop-blur-sm md:backdrop-blur-xl border border-white/10 transition-all duration-300 hover:border-[#00f0ff]/50 hover:shadow-[0_0_30px_rgba(0,240,255,0.15)] cursor-pointer transform-gpu will-change-transform"
+                 className="block"
                >
-                 <h3 className="font-display text-xl md:text-2xl font-bold mb-4 text-white tracking-wide">
-                   {card.title}
-                 </h3>
-                 <p className="text-gray-400 leading-relaxed text-sm md:text-base">
-                   {card.description}
-                 </p>
-               </motion.a>
-            ))}
+                 <motion.div
+                   initial={{ opacity: 0, y: 50 }}
+                   whileInView={{ opacity: 1, y: 0 }}
+                   viewport={{ once: true, amount: 0.1 }}
+                   transition={{ duration: 0.6, delay: idx * 0.1, ease: [0.16, 1, 0.3, 1] }}
+                   whileHover={{ scale: 1.05 }}
+                   className="p-8 rounded-2xl bg-black/90 md:bg-white/5 backdrop-blur-sm md:backdrop-blur-xl border border-white/10 transition-all duration-300 hover:border-[#00f0ff]/50 hover:shadow-[0_0_30px_rgba(0,240,255,0.15)] cursor-pointer transform-gpu will-change-transform"
+                 >
+                   <h3 className="font-display text-xl md:text-2xl font-bold mb-4 text-white tracking-wide">
+                     {card.title}
+                   </h3>
+                   <p className="text-gray-400 leading-relaxed text-sm md:text-base">
+                     {card.description}
+                   </p>
+                 </motion.div>
+               </Link>
+            )})}
           </div>
           
         </div>
@@ -436,7 +434,7 @@ function HomeContent({ t, openFaqIndex, setOpenFaqIndex, setIsContactModalOpen }
             className="w-full lg:w-5/12 aspect-[3/4] relative rounded-2xl overflow-hidden bg-black/90 md:bg-white/5 backdrop-blur-sm md:backdrop-blur-sm border border-white/10 shadow-2xl transform-gpu will-change-transform"
           >
             <img 
-              src="https://res.cloudinary.com/ddl75cyhk/image/upload/v1772532610/rok-skol-ai-kreativni-studio-direktor_z5inpr.png" 
+              src="https://i.ibb.co/LDznGTZd/rok-skol-ai-kreativni-studio-direktor.png" 
               alt="Rok Skol - Kreativni vodja in ustanovitelj SKOL AI" 
               className="w-full h-full object-cover object-center opacity-90 mix-blend-luminosity"
               referrerPolicy="no-referrer"
@@ -453,15 +451,9 @@ function HomeContent({ t, openFaqIndex, setOpenFaqIndex, setIsContactModalOpen }
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, amount: 0.1 }}
               transition={{ duration: 0.8, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
-              className="font-display text-3xl md:text-4xl lg:text-5xl font-bold uppercase tracking-tight leading-[1.2] mb-8 transform-gpu will-change-transform"
+              className="font-display text-3xl md:text-4xl lg:text-5xl font-bold uppercase tracking-tight leading-[1.2] mb-8 transform-gpu will-change-transform text-white"
             >
-              {t.vision.quote.split('.').map((part, i, arr) => (
-                <React.Fragment key={i}>
-                  {part}{i < arr.length - 1 ? '.' : ''}
-                  {i === 0 && <br />}
-                  {i === 1 && <span className="text-transparent bg-clip-text bg-gradient-to-r from-white to-gray-500">{part}</span>}
-                </React.Fragment>
-              ))}
+              {t.vision.quote}
             </motion.h3>
 
             <motion.div
@@ -482,12 +474,12 @@ function HomeContent({ t, openFaqIndex, setOpenFaqIndex, setIsContactModalOpen }
               transition={{ duration: 0.8, delay: 0.6, ease: [0.16, 1, 0.3, 1] }}
               className="transform-gpu will-change-transform"
             >
-              <a 
-                href="/vibecoding"
+              <Link 
+                to="/vibecoding"
                 className="inline-block font-mono text-xs md:text-sm text-gray-400 uppercase tracking-widest transition-all duration-300 hover:text-[#00f0ff] hover:tracking-[0.3em] hover:drop-shadow-[0_0_8px_rgba(0,240,255,0.8)]"
               >
                 {t.vision.cta}
-              </a>
+              </Link>
             </motion.div>
           </div>
 
@@ -524,6 +516,57 @@ function HomeContent({ t, openFaqIndex, setOpenFaqIndex, setIsContactModalOpen }
           ))}
         </motion.div>
       </section>
-    </>
+    </div>
+  );
+}
+
+export default function App() {
+  const [isContactModalOpen, setIsContactModalOpen] = useState(false);
+  const [isLoading, setIsLoading] = useState(() => {
+    return !sessionStorage.getItem('preloaderShown');
+  });
+  const location = useLocation();
+
+  useEffect(() => {
+    // Scroll to top on route change
+    window.scrollTo(0, 0);
+    
+    // Handle hash scrolling
+    if (location.hash) {
+      const id = location.hash.replace('#', '');
+      const element = document.getElementById(id);
+      if (element) {
+        setTimeout(() => {
+          element.scrollIntoView({ behavior: 'smooth' });
+        }, 100);
+      }
+    }
+  }, [location]);
+
+  const handlePreloaderComplete = () => {
+    sessionStorage.setItem('preloaderShown', 'true');
+    setIsLoading(false);
+  };
+
+  return (
+    <AnimatePresence mode="wait">
+      {isLoading ? (
+        <Preloader key="preloader" onComplete={handlePreloaderComplete} />
+      ) : (
+        <div key="content">
+          <CustomCursor />
+          <Navbar />
+          <ContactModal isOpen={isContactModalOpen} onClose={() => setIsContactModalOpen(false)} />
+          <Routes>
+            <Route path="/" element={<HomeContent onOpenContact={() => setIsContactModalOpen(true)} />} />
+            <Route path="/storitve" element={<Storitve onOpenContact={() => setIsContactModalOpen(true)} />} />
+            <Route path="/showroom" element={<Showroom onOpenContact={() => setIsContactModalOpen(true)} />} />
+            <Route path="/vibecoding" element={<Vibecoding onOpenContact={() => setIsContactModalOpen(true)} />} />
+            <Route path="*" element={<Navigate to="/" replace />} />
+          </Routes>
+          <Footer onOpenContact={() => setIsContactModalOpen(true)} />
+        </div>
+      )}
+    </AnimatePresence>
   );
 }
