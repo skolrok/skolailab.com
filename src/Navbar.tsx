@@ -2,11 +2,13 @@ import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import { Menu, X } from 'lucide-react';
 import { useLanguage } from './LanguageContext';
+import { Link, useLocation } from 'react-router-dom';
 
 export default function Navbar() {
   const { lang, setLang, t } = useLanguage();
   const [scrolled, setScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const location = useLocation();
 
   const links = [
     { name: t.nav.home, href: '/' },
@@ -39,13 +41,23 @@ export default function Navbar() {
           <div className="hidden md:flex items-center gap-8">
             <nav className="flex items-center gap-8">
               {links.map((link) => (
-                <a 
-                  key={link.name} 
-                  href={link.href}
-                  className="font-mono text-xs lg:text-sm tracking-[0.2em] text-gray-400 hover:text-white hover:drop-shadow-[0_0_8px_rgba(0,240,255,0.6)] transition-all duration-300"
-                >
-                  {link.name}
-                </a>
+                link.href.startsWith('#') ? (
+                  <a 
+                    key={link.name} 
+                    href={link.href}
+                    className="font-mono text-xs lg:text-sm tracking-[0.2em] text-gray-400 hover:text-white hover:drop-shadow-[0_0_8px_rgba(0,240,255,0.6)] transition-all duration-300"
+                  >
+                    {link.name}
+                  </a>
+                ) : (
+                  <Link 
+                    key={link.name} 
+                    to={link.href}
+                    className={`font-mono text-xs lg:text-sm tracking-[0.2em] transition-all duration-300 hover:drop-shadow-[0_0_8px_rgba(0,240,255,0.6)] ${location.pathname === link.href ? 'text-white drop-shadow-[0_0_8px_rgba(0,240,255,0.6)]' : 'text-gray-400 hover:text-white'}`}
+                  >
+                    {link.name}
+                  </Link>
+                )
               ))}
             </nav>
 
@@ -103,14 +115,25 @@ export default function Navbar() {
             </button>
             <nav className="flex flex-col items-center gap-8">
               {links.map((link) => (
-                <a 
-                  key={link.name} 
-                  href={link.href}
-                  className="font-display text-3xl font-bold tracking-widest uppercase text-white hover:text-[#00f0ff] transition-colors duration-300"
-                  onClick={() => setMobileMenuOpen(false)}
-                >
-                  {link.name}
-                </a>
+                link.href.startsWith('#') ? (
+                  <a 
+                    key={link.name} 
+                    href={link.href}
+                    className="font-display text-3xl font-bold tracking-widest uppercase text-white hover:text-[#00f0ff] transition-colors duration-300"
+                    onClick={() => setMobileMenuOpen(false)}
+                  >
+                    {link.name}
+                  </a>
+                ) : (
+                  <Link 
+                    key={link.name} 
+                    to={link.href}
+                    className={`font-display text-3xl font-bold tracking-widest uppercase transition-colors duration-300 ${location.pathname === link.href ? 'text-[#00f0ff]' : 'text-white hover:text-[#00f0ff]'}`}
+                    onClick={() => setMobileMenuOpen(false)}
+                  >
+                    {link.name}
+                  </Link>
+                )
               ))}
             </nav>
           </motion.div>
