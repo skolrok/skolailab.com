@@ -3,7 +3,7 @@ import { Instagram } from 'lucide-react';
 import { useLanguage } from './LanguageContext';
 
 export default function Footer({ onOpenContact }: { onOpenContact: () => void }) {
-  const { t } = useLanguage();
+  const { t } = useLanguage() as any;
 
   return (
     <footer id="kontakt" className="relative bg-[#000000] pt-32 pb-12 px-6 md:px-12 overflow-hidden border-t border-white/5">
