@@ -97,13 +97,13 @@ export default function Storitve({ onOpenContact }: { onOpenContact?: () => void
       <Navbar />
 
       {/* 1. Hero Sekcija */}
-      <main className="relative flex flex-col items-center justify-center min-h-[70vh] px-6 pt-32 text-center md:px-12 overflow-hidden">
+      <main className="relative flex flex-col items-center justify-center min-h-[70vh] px-4 pt-32 text-center md:px-12 overflow-hidden">
         <div className="max-w-5xl mx-auto flex flex-col items-center z-10">
           <motion.h1 
             initial={{ opacity: 0, y: 40 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-            className="font-display text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-black leading-[1.05] tracking-tight mb-8 text-white"
+            className="font-display text-4xl sm:text-6xl md:text-7xl lg:text-8xl font-black leading-[1.1] md:leading-[1.05] tracking-tight mb-8 text-white"
           >
             {t.services_page.title}
           </motion.h1>
@@ -112,7 +112,7 @@ export default function Storitve({ onOpenContact }: { onOpenContact?: () => void
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
-            className="font-mono text-sm md:text-base text-gray-400 tracking-widest uppercase max-w-3xl leading-relaxed"
+            className="font-mono text-xs md:text-base text-gray-400 tracking-widest uppercase max-w-3xl leading-relaxed px-2 md:px-0"
           >
             {t.services_page.subtitle}
           </motion.p>
@@ -125,8 +125,8 @@ export default function Storitve({ onOpenContact }: { onOpenContact?: () => void
       {/* Storitve Blocks */}
       <div className="flex flex-col">
         {services.map((service, index) => (
-          <section key={index} id={service.id} className="relative px-6 py-24 md:px-12 lg:py-40 max-w-7xl mx-auto w-full border-t border-white/5">
-            <div className="flex flex-col lg:flex-row gap-12 lg:gap-24">
+          <section key={index} id={service.id} className="relative px-4 py-16 md:px-12 lg:py-40 max-w-7xl mx-auto w-full border-t border-white/5">
+            <div className="flex flex-col lg:flex-row gap-10 lg:gap-24">
               
               {/* Left: Title & Intro */}
               <div className="lg:w-5/12 flex flex-col">
@@ -136,7 +136,7 @@ export default function Storitve({ onOpenContact }: { onOpenContact?: () => void
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true, amount: 0.1 }}
                     transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-                    className="font-display text-4xl md:text-5xl lg:text-6xl font-bold uppercase tracking-tight leading-[1.1] mb-6 transform-gpu will-change-transform"
+                    className="font-display text-3xl md:text-5xl lg:text-6xl font-bold uppercase tracking-tight leading-[1.1] mb-6 transform-gpu will-change-transform"
                   >
                     {service.title}
                   </motion.h2>
@@ -145,7 +145,7 @@ export default function Storitve({ onOpenContact }: { onOpenContact?: () => void
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true, amount: 0.1 }}
                     transition={{ duration: 0.8, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
-                    className="text-[#00f0ff] text-lg md:text-xl font-medium italic transform-gpu will-change-transform"
+                    className="text-[#00f0ff] text-base md:text-xl font-medium italic transform-gpu will-change-transform"
                   >
                     {service.intro}
                   </motion.p>
@@ -153,18 +153,18 @@ export default function Storitve({ onOpenContact }: { onOpenContact?: () => void
               </div>
 
               {/* Right: Problem & Solution */}
-              <div className="lg:w-7/12 flex flex-col gap-8">
+              <div className="lg:w-7/12 flex flex-col gap-6 md:gap-8">
                 {/* Problem Block */}
                 <motion.div 
                   initial={{ opacity: 0, y: 40 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true, amount: 0.1 }}
                   transition={{ duration: 0.8, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
-                  className="bg-black/90 md:bg-red-950/10 border border-red-500/20 p-8 md:p-10 rounded-2xl backdrop-blur-sm md:backdrop-blur-sm relative overflow-hidden group transform-gpu will-change-transform"
+                  className="bg-black/90 md:bg-red-950/10 border border-red-500/20 p-6 md:p-10 rounded-2xl backdrop-blur-sm md:backdrop-blur-sm relative overflow-hidden group transform-gpu will-change-transform"
                 >
                   <div className="absolute inset-0 bg-gradient-to-br from-red-500/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-                  <h4 className="text-red-400 font-mono text-xs md:text-sm uppercase tracking-widest mb-4 relative z-10">{t.services_page.problem}</h4>
-                  <p className="text-gray-300 text-base md:text-lg leading-relaxed relative z-10">
+                  <h4 className="text-red-400 font-mono text-[10px] md:text-sm uppercase tracking-widest mb-4 relative z-10">{t.services_page.problem}</h4>
+                  <p className="text-gray-300 text-sm md:text-lg leading-relaxed relative z-10">
                     {service.problem}
                   </p>
                 </motion.div>
@@ -175,18 +175,18 @@ export default function Storitve({ onOpenContact }: { onOpenContact?: () => void
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true, amount: 0.1 }}
                   transition={{ duration: 0.8, delay: 0.3, ease: [0.16, 1, 0.3, 1] }}
-                  className="bg-black/90 md:bg-[#00f0ff]/5 border border-[#00f0ff]/20 p-8 md:p-10 rounded-2xl backdrop-blur-sm md:backdrop-blur-sm relative overflow-hidden group transform-gpu will-change-transform"
+                  className="bg-black/90 md:bg-[#00f0ff]/5 border border-[#00f0ff]/20 p-6 md:p-10 rounded-2xl backdrop-blur-sm md:backdrop-blur-sm relative overflow-hidden group transform-gpu will-change-transform"
                 >
                   <div className="absolute inset-0 bg-gradient-to-br from-[#00f0ff]/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-                  <h4 className="text-[#00f0ff] font-mono text-xs md:text-sm uppercase tracking-widest mb-6 relative z-10">{t.services_page.solution}</h4>
-                  <ul className="space-y-8 relative z-10">
+                  <h4 className="text-[#00f0ff] font-mono text-[10px] md:text-sm uppercase tracking-widest mb-6 relative z-10">{t.services_page.solution}</h4>
+                  <ul className="space-y-6 md:space-y-8 relative z-10">
                     {service.solutions.map((sol, i) => (
                       <li key={i} className="flex flex-col gap-2">
                         <div className="flex items-center gap-3">
                           <div className="w-1.5 h-1.5 rounded-full bg-[#00f0ff] shadow-[0_0_8px_#00f0ff]"></div>
-                          <strong className="text-white font-display text-lg tracking-wide">{sol.title}</strong>
+                          <strong className="text-white font-display text-base md:text-lg tracking-wide">{sol.title}</strong>
                         </div>
-                        <p className="text-gray-400 text-base leading-relaxed pl-4 border-l border-white/10 ml-[3px]">
+                        <p className="text-gray-400 text-sm md:text-base leading-relaxed pl-4 border-l border-white/10 ml-[3px]">
                           {sol.text}
                         </p>
                       </li>

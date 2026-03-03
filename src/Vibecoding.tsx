@@ -22,13 +22,13 @@ export default function Vibecoding({ onOpenContact }: { onOpenContact?: () => vo
       <Navbar />
 
       {/* Hero Sekcija */}
-      <main className="relative flex flex-col items-center justify-center min-h-[70vh] px-6 pt-32 text-center md:px-12 overflow-hidden">
-        <div className="max-w-5xl mx-auto flex flex-col items-center z-10">
+      <main className="relative flex flex-col items-center justify-center min-h-[70vh] px-4 pt-32 text-center md:px-12 overflow-hidden">
+        <div className="max-w-5xl mx-auto flex flex-col items-center z-10 transform-gpu will-change-transform">
           <motion.h1 
             initial={{ opacity: 0, y: 40 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-            className="font-display text-6xl sm:text-7xl md:text-8xl lg:text-9xl font-black leading-[1.05] tracking-tight mb-8 text-white drop-shadow-2xl"
+            className="font-display text-5xl sm:text-7xl md:text-8xl lg:text-9xl font-black leading-[1.1] md:leading-[1.05] tracking-tight mb-8 text-white drop-shadow-2xl transform-gpu will-change-transform"
           >
             {t.manifest.title}
           </motion.h1>
@@ -37,7 +37,7 @@ export default function Vibecoding({ onOpenContact }: { onOpenContact?: () => vo
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
-            className="font-mono text-sm md:text-base text-gray-300 tracking-widest uppercase max-w-2xl leading-relaxed transform-gpu will-change-transform"
+            className="font-mono text-xs md:text-base text-gray-300 tracking-widest uppercase max-w-2xl leading-relaxed px-2 md:px-0 transform-gpu will-change-transform"
           >
             {t.manifest.subtitle}
           </motion.p>
@@ -48,21 +48,21 @@ export default function Vibecoding({ onOpenContact }: { onOpenContact?: () => vo
       </main>
 
       {/* Tekstovni blok (Vibecoding & AI) */}
-      <section className="relative px-6 py-24 md:px-12 lg:py-32 max-w-5xl mx-auto text-center">
+      <section className="relative px-4 py-16 md:px-12 lg:py-32 max-w-5xl mx-auto text-center">
         <motion.p 
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, amount: 0.1 }}
           transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-          className="font-display text-2xl md:text-3xl lg:text-4xl font-medium leading-relaxed text-gray-300 transform-gpu will-change-transform"
+          className="font-display text-xl md:text-3xl lg:text-4xl font-medium leading-relaxed text-gray-300 transform-gpu will-change-transform"
         >
           {t.manifest.quote}
         </motion.p>
       </section>
 
       {/* KREATIVNA VIZIJA */}
-      <section className="relative px-6 py-24 md:px-12 lg:py-40 max-w-7xl mx-auto border-t border-white/5">
-        <div className="flex flex-col lg:flex-row items-center gap-12 lg:gap-24">
+      <section className="relative px-4 py-16 md:px-12 lg:py-40 max-w-7xl mx-auto border-t border-white/5">
+        <div className="flex flex-col lg:flex-row items-center gap-10 lg:gap-24">
           
           {/* Vizualija */}
           <motion.div 
@@ -89,7 +89,7 @@ export default function Vibecoding({ onOpenContact }: { onOpenContact?: () => vo
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, amount: 0.1 }}
               transition={{ duration: 0.8, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
-              className="font-display text-4xl md:text-5xl lg:text-6xl font-bold uppercase tracking-tight leading-[1.1] mb-12 text-white drop-shadow-lg transform-gpu will-change-transform"
+              className="font-display text-3xl md:text-5xl lg:text-6xl font-bold uppercase tracking-tight leading-[1.1] mb-8 md:mb-12 text-white drop-shadow-lg transform-gpu will-change-transform"
             >
               {t.vision.quote}
             </motion.h2>
@@ -101,8 +101,8 @@ export default function Vibecoding({ onOpenContact }: { onOpenContact?: () => vo
               transition={{ duration: 0.8, delay: 0.4, ease: [0.16, 1, 0.3, 1] }}
               className="flex flex-col gap-2 border-l-2 border-[#00f0ff]/50 pl-6 transform-gpu will-change-transform"
             >
-              <span className="font-display text-2xl md:text-3xl font-bold text-white tracking-wide">{t.vision.signature}</span>
-              <span className="font-mono text-sm md:text-base text-[#00f0ff] uppercase tracking-widest">{t.vision.role}</span>
+              <span className="font-display text-xl md:text-3xl font-bold text-white tracking-wide">{t.vision.signature}</span>
+              <span className="font-mono text-xs md:text-base text-[#00f0ff] uppercase tracking-widest">{t.vision.role}</span>
             </motion.div>
           </div>
 
