@@ -12,7 +12,6 @@ export default function Navbar() {
 
   const links = [
     { name: t.nav.home, href: '/' },
-    { name: (t.nav as any).services || (lang === 'sl' ? 'STORITVE' : 'SERVICES'), href: '/storitve' },
     { name: t.nav.work, href: '/showroom' },
     { name: t.nav.manifesto, href: '/vibecoding' },
     { name: t.nav.contact, href: '#kontakt' },

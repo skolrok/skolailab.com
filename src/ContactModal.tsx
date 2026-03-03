@@ -6,40 +6,18 @@ import { useLanguage } from './LanguageContext';
 export default function ContactModal({ isOpen, onClose }: { isOpen: boolean; onClose: () => void }) {
   const { t } = useLanguage();
   const [isSubmitted, setIsSubmitted] = useState(false);
-  const [isSending, setIsSending] = useState(false);
 
   useEffect(() => {
     if (!isOpen) {
-      const timer = setTimeout(() => {
-        setIsSubmitted(false);
-        setIsSending(false);
-      }, 300);
+      // Reset state after modal closes
+      const timer = setTimeout(() => setIsSubmitted(false), 300);
       return () => clearTimeout(timer);
     }
   }, [isOpen]);
 
-  const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
+  const handleSubmit = (e: FormEvent) => {
     e.preventDefault();
-    setIsSending(true);
-
-    const formData = new FormData(e.currentTarget);
-
-    try {
-      const response = await fetch("https://api.web3forms.com/submit", {
-        method: "POST",
-        body: formData
-      });
-
-      if (response.ok) {
-        setIsSubmitted(true);
-      } else {
-        console.error("Napaka pri pošiljanju");
-        setIsSending(false);
-      }
-    } catch (error) {
-      console.error("Napaka:", error);
-      setIsSending(false);
-    }
+    setIsSubmitted(true);
   };
 
   return (
@@ -81,10 +59,8 @@ export default function ContactModal({ isOpen, onClose }: { isOpen: boolean; onC
                     {t.contact.subtitle}
                   </p>
 
-                  <form onSubmit={handleSubmit} className="flex flex-col gap-6">
+                  <form action="https://api.web3forms.com/submit" method="POST" onSubmit={handleSubmit} className="flex flex-col gap-6">
                     <input type="hidden" name="access_key" value="274f2d37-ff0b-46e2-9215-475914fb26b8" />
-                    {/* Prepreči spam */}
-                    <input type="checkbox" name="botcheck" className="hidden" style={{ display: 'none' }} />
                     
                     <div className="flex flex-col gap-2">
                       <label className="font-mono text-xs text-cyan-500 uppercase tracking-widest">{t.contact.name}</label>
@@ -134,10 +110,9 @@ export default function ContactModal({ isOpen, onClose }: { isOpen: boolean; onC
 
                     <button 
                       type="submit"
-                      disabled={isSending}
-                      className={`mt-4 relative group px-8 py-4 bg-[#0a0a0a] border border-[#00f0ff] text-[#00f0ff] font-mono text-lg font-bold tracking-widest uppercase overflow-hidden transition-all duration-300 ${isSending ? 'opacity-50 cursor-not-allowed' : 'hover:shadow-[0_0_20px_rgba(0,240,255,0.6)] hover:bg-[#00f0ff]/10'}`}
+                      className="mt-4 relative group px-8 py-4 bg-[#0a0a0a] border border-[#00f0ff] text-[#00f0ff] font-mono text-lg font-bold tracking-widest uppercase overflow-hidden transition-all duration-300 hover:shadow-[0_0_20px_rgba(0,240,255,0.6)] hover:bg-[#00f0ff]/10"
                     >
-                      <span className="relative z-10">{isSending ? 'Pošiljam...' : t.contact.submit}</span>
+                      <span className="relative z-10">{t.contact.submit}</span>
                       <div className="absolute inset-0 bg-[#00f0ff]/10 translate-y-full group-hover:translate-y-0 transition-transform duration-300 ease-out"></div>
                     </button>
                   </form>
