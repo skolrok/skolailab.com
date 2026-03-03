@@ -4,7 +4,7 @@
  */
 
 import { motion } from 'motion/react';
-import { useState, useRef, MouseEvent, TouchEvent } from 'react';
+import { useState, useRef, MouseEvent, TouchEvent, useEffect } from 'react';
 import Navbar from './Navbar';
 import CustomCursor from './CustomCursor';
 import { useLanguage } from './LanguageContext';
@@ -41,7 +41,7 @@ function BeforeAfterSlider() {
       {/* After Image (Background) */}
       <div className="absolute inset-0 w-full h-full">
         <img 
-          src="https://res.cloudinary.com/ddl75cyhk/image/upload/v1772532608/skol-ai-kreativni-studio-umetna-inteligenca-oglasi_ibb8jq.webp" 
+          src="https://i.ibb.co/4n6SC4zY/skol-ai-kreativni-studio-umetna-inteligenca-oglasi.webp" 
           alt="skol ai kreativni studio umetna inteligenca oglasi" 
           className="w-full h-full object-cover object-top" 
           referrerPolicy="no-referrer" 
@@ -57,7 +57,7 @@ function BeforeAfterSlider() {
         style={{ clipPath: `inset(0 ${100 - sliderPosition}% 0 0)` }}
       >
         <img 
-          src="https://res.cloudinary.com/ddl75cyhk/image/upload/v1772532608/izdelava-spletnih-strani-slabe-fotografije-prej_tojpdq.webp" 
+          src="https://i.ibb.co/5hTh3PMY/izdelava-spletnih-strani-slabe-fotografije-prej.webp" 
           alt="izdelava spletnih strani slabe fotografije prej" 
           className="w-full h-full object-cover object-top" 
           referrerPolicy="no-referrer" 
@@ -84,7 +84,12 @@ function BeforeAfterSlider() {
 }
 
 export default function Showroom({ onOpenContact }: { onOpenContact?: () => void }) {
-  const { t } = useLanguage();
+  const { t } = useLanguage() as any;
+
+  useEffect(() => {
+    document.title = "Showroom | SKOL AI Kreativni Studio";
+  }, []);
+
   return (
     <div className="min-h-screen bg-[#0a0a0a] text-white font-sans selection:bg-cyan-500/30">
       <CustomCursor />
@@ -125,7 +130,7 @@ export default function Showroom({ onOpenContact }: { onOpenContact?: () => void
           transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
           className="font-display text-4xl md:text-5xl lg:text-6xl font-bold text-center uppercase tracking-tight mb-16 transform-gpu will-change-transform"
         >
-          {t.impact.precision.split(' ')[0]} <span className="text-transparent bg-clip-text bg-gradient-to-r from-white to-gray-500">{t.impact.precision.split(' ')[1]}</span>
+          {t.showroom.precision.split(' ')[0]} <span className="text-transparent bg-clip-text bg-gradient-to-r from-white to-gray-500">{t.showroom.precision.split(' ')[1]}</span>
         </motion.h2>
 
         <motion.div
@@ -148,7 +153,7 @@ export default function Showroom({ onOpenContact }: { onOpenContact?: () => void
           transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
           className="font-display text-4xl md:text-5xl lg:text-6xl font-bold text-left uppercase tracking-tight mb-16 transform-gpu will-change-transform"
         >
-          AI STOCK & <span className="text-transparent bg-clip-text bg-gradient-to-r from-white to-gray-500">VPLIVNEŽI.</span>
+          {t.showroom.stockTitle.split('&')[0]} & <span className="text-transparent bg-clip-text bg-gradient-to-r from-white to-gray-500">{t.showroom.stockTitle.split('&')[1]}</span>
         </motion.h2>
 
         {/* Bento Grid */}

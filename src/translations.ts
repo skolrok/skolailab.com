@@ -2,6 +2,7 @@ export const translations = {
   sl: {
     nav: {
       home: 'DOMOV',
+      services: 'STORITVE',
       work: 'SHOWROOM',
       manifesto: 'MANIFEST',
       contact: 'KONTAKT',
@@ -69,6 +70,10 @@ export const translations = {
       title: 'SHOWROOM.',
       subtitle: '[ KJER POVPREČJE UMRE IN ESTETIKA PREVZAME NADZOR. ]',
       placeholder: 'V SINTEZI...',
+      precision: 'KIRURŠKA NATANČNOST.',
+      stockTitle: 'AI STOCK & VPLIVNEŽI.',
+      ctaTitle: 'DOVOLJ GLEDANJA.',
+      ctaButton: 'ZAČNIMO USTVARJATI',
       items: {
         b2b: { title: 'B2B VIZUALIZACIJE', desc: 'Arhitekturni ambient' },
         stock: { title: 'AI STOCK PO MERI', desc: 'Hipnotični produktni vizuali' },
@@ -76,6 +81,13 @@ export const translations = {
         action: { title: 'FOTOREALISTIČNA AKCIJA', desc: 'Dinamična športna kinetika' },
         influencers: { title: 'VIRTUALNI VPLIVNEŽI', desc: 'AI Modeli' }
       }
+    },
+    services_page: {
+      title: 'DOMINACIJA VSAKEGA KANALA.',
+      subtitle: '[ Ne ponujamo storitev. Ponujamo nepravično prednost pred vašo konkurenco. ]',
+      problem: 'Problem',
+      solution: 'Rešitev',
+      cta: 'ZAČNIMO USTVARJATI'
     },
     footer: {
       cta: 'ZAČNIMO\nUSTVARJATI.',
@@ -104,6 +116,9 @@ export const translations = {
         close: 'ZAPRI OKNO'
       }
     },
+    manifest: {
+      quote: '"Klasične agencije so prepočasne in predrage. Mi ne pišemo vrstic kode, mi gradimo digitalne ekosisteme z umetno inteligenco in vibecodingom. Rezultat? Hiper-realistične vizualije in bliskovite spletne strani v delčku časa."'
+    },
     faq: {
       title: 'JASNO IN GLASNO.',
       items: [
@@ -129,7 +144,8 @@ export const translations = {
   en: {
     nav: {
       home: 'HOME',
-      work: 'WORK',
+      services: 'SERVICES',
+      work: 'SHOWROOM',
       manifesto: 'MANIFESTO',
       contact: 'CONTACT',
     },
@@ -196,6 +212,10 @@ export const translations = {
       title: 'SHOWROOM.',
       subtitle: '[ WHERE AVERAGE DIES AND AESTHETICS TAKE CONTROL. ]',
       placeholder: 'IN SYNTHESIS...',
+      precision: 'SURGICAL PRECISION.',
+      stockTitle: 'AI STOCK & INFLUENCERS.',
+      ctaTitle: 'ENOUGH WATCHING.',
+      ctaButton: 'START CREATING',
       items: {
         b2b: { title: 'B2B VISUALIZATIONS', desc: 'Architectural ambiance' },
         stock: { title: 'CUSTOM AI STOCK', desc: 'Hypnotic product visuals' },
@@ -203,6 +223,13 @@ export const translations = {
         action: { title: 'PHOTOREALISTIC ACTION', desc: 'Dynamic sports kinetics' },
         influencers: { title: 'VIRTUAL INFLUENCERS', desc: 'AI Models' }
       }
+    },
+    services_page: {
+      title: 'DOMINATION OF EVERY CHANNEL.',
+      subtitle: '[ We do not offer services. We offer an unfair advantage over your competition. ]',
+      problem: 'Problem',
+      solution: 'Solution',
+      cta: 'START CREATING'
     },
     footer: {
       cta: 'START\nCREATING.',
@@ -230,6 +257,9 @@ export const translations = {
         text: '[ Your inquiry has been successfully saved in our database. Our AI architect will contact you as soon as possible. ]',
         close: 'CLOSE WINDOW'
       }
+    },
+    manifest: {
+      quote: '"Classic agencies are too slow and too expensive. We don\'t write lines of code, we build digital ecosystems with AI and vibecoding. The result? Hyper-realistic visuals and lightning-fast websites in a fraction of the time."'
     },
     faq: {
       title: 'LOUD AND CLEAR.',
