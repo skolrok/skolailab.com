@@ -1,23 +1,57 @@
 import { useState, useEffect, FormEvent } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
-import { X, CheckCircle } from 'lucide-react';
+import { X, CheckCircle, Loader2 } from 'lucide-react';
 import { useLanguage } from './LanguageContext';
 
 export default function ContactModal({ isOpen, onClose }: { isOpen: boolean; onClose: () => void }) {
-  const { t } = useLanguage();
+  const { t } = useLanguage() as any;
   const [isSubmitted, setIsSubmitted] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
     if (!isOpen) {
       // Reset state after modal closes
-      const timer = setTimeout(() => setIsSubmitted(false), 300);
+      const timer = setTimeout(() => {
+        setIsSubmitted(false);
+        setIsSubmitting(false);
+        setError(null);
+      }, 300);
       return () => clearTimeout(timer);
     }
   }, [isOpen]);
 
-  const handleSubmit = (e: FormEvent) => {
+  const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    setIsSubmitted(true);
+    setIsSubmitting(true);
+    setError(null);
+
+    const formData = new FormData(e.currentTarget);
+    formData.append("access_key", "274f2d37-ff0b-46e2-9215-475914fb26b8");
+
+    const object = Object.fromEntries(formData);
+    const json = JSON.stringify(object);
+
+    try {
+      const response = await fetch("https://api.web3forms.com/submit", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Accept: "application/json"
+        },
+        body: json
+      });
+      const result = await response.json();
+      if (result.success) {
+        setIsSubmitted(true);
+      } else {
+        setError("Nekaj je šlo narobe. Prosimo, poskusite znova.");
+      }
+    } catch (err) {
+      setError("Napaka pri povezavi. Preverite internetno povezavo.");
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -59,14 +93,12 @@ export default function ContactModal({ isOpen, onClose }: { isOpen: boolean; onC
                     {t.contact.subtitle}
                   </p>
 
-                  <form action="https://api.web3forms.com/submit" method="POST" onSubmit={handleSubmit} className="flex flex-col gap-6">
-                    <input type="hidden" name="access_key" value="274f2d37-ff0b-46e2-9215-475914fb26b8" />
-                    
+                  <form onSubmit={handleSubmit} className="flex flex-col gap-6">
                     <div className="flex flex-col gap-2">
                       <label className="font-mono text-xs text-cyan-500 uppercase tracking-widest">{t.contact.name}</label>
                       <input 
-                        type="text" 
                         name="name"
+                        type="text" 
                         required
                         className="w-full bg-black border border-white/10 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-cyan-500 focus:shadow-[0_0_15px_rgba(6,182,212,0.3)] transition-all duration-300"
                       />
@@ -75,8 +107,8 @@ export default function ContactModal({ isOpen, onClose }: { isOpen: boolean; onC
                     <div className="flex flex-col gap-2">
                       <label className="font-mono text-xs text-cyan-500 uppercase tracking-widest">{t.contact.email}</label>
                       <input 
-                        type="email" 
                         name="email"
+                        type="email" 
                         required
                         className="w-full bg-black border border-white/10 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-cyan-500 focus:shadow-[0_0_15px_rgba(6,182,212,0.3)] transition-all duration-300"
                       />
@@ -108,11 +140,25 @@ export default function ContactModal({ isOpen, onClose }: { isOpen: boolean; onC
                       ></textarea>
                     </div>
 
+                    {error && (
+                      <p className="text-red-500 font-mono text-xs">{error}</p>
+                    )}
+
                     <button 
                       type="submit"
-                      className="mt-4 relative group px-8 py-4 bg-[#0a0a0a] border border-[#00f0ff] text-[#00f0ff] font-mono text-lg font-bold tracking-widest uppercase overflow-hidden transition-all duration-300 hover:shadow-[0_0_20px_rgba(0,240,255,0.6)] hover:bg-[#00f0ff]/10"
+                      disabled={isSubmitting}
+                      className="mt-4 relative group px-8 py-4 bg-[#0a0a0a] border border-[#00f0ff] text-[#00f0ff] font-mono text-lg font-bold tracking-widest uppercase overflow-hidden transition-all duration-300 hover:shadow-[0_0_20px_rgba(0,240,255,0.6)] hover:bg-[#00f0ff]/10 disabled:opacity-50 disabled:cursor-not-allowed"
                     >
-                      <span className="relative z-10">{t.contact.submit}</span>
+                      <span className="relative z-10 flex items-center justify-center gap-2">
+                        {isSubmitting ? (
+                          <>
+                            <Loader2 className="animate-spin" size={20} />
+                            POŠILJAM...
+                          </>
+                        ) : (
+                          t.contact.submit
+                        )}
+                      </span>
                       <div className="absolute inset-0 bg-[#00f0ff]/10 translate-y-full group-hover:translate-y-0 transition-transform duration-300 ease-out"></div>
                     </button>
                   </form>
