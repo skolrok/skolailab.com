@@ -117,6 +117,8 @@ export const translations = {
       }
     },
     manifest: {
+      title: 'MANIFEST.',
+      subtitle: '[ KONEC POVPREČNOSTI. ZAČETEK DOMINACIJE. ]',
       quote: '"Klasične agencije so prepočasne in predrage. Mi ne pišemo vrstic kode, mi gradimo digitalne ekosisteme z umetno inteligenco in vibecodingom. Rezultat? Hiper-realistične vizualije in bliskovite spletne strani v delčku časa."'
     },
     faq: {
@@ -259,6 +261,8 @@ export const translations = {
       }
     },
     manifest: {
+      title: 'MANIFESTO.',
+      subtitle: '[ THE END OF MEDIOCRITY. THE BEGINNING OF DOMINATION. ]',
       quote: '"Classic agencies are too slow and too expensive. We don\'t write lines of code, we build digital ecosystems with AI and vibecoding. The result? Hyper-realistic visuals and lightning-fast websites in a fraction of the time."'
     },
     faq: {

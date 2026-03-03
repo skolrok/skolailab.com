@@ -30,7 +30,7 @@ export default function Vibecoding({ onOpenContact }: { onOpenContact?: () => vo
             transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
             className="font-display text-6xl sm:text-7xl md:text-8xl lg:text-9xl font-black leading-[1.05] tracking-tight mb-8 text-white drop-shadow-2xl"
           >
-            MANIFEST.
+            {t.manifest.title}
           </motion.h1>
 
           <motion.p 
@@ -39,7 +39,7 @@ export default function Vibecoding({ onOpenContact }: { onOpenContact?: () => vo
             transition={{ duration: 0.8, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
             className="font-mono text-sm md:text-base text-gray-300 tracking-widest uppercase max-w-2xl leading-relaxed transform-gpu will-change-transform"
           >
-            [ Konec povprečnosti. Začetek dominacije. ]
+            {t.manifest.subtitle}
           </motion.p>
         </div>
         
