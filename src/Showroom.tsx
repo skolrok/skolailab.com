@@ -5,6 +5,7 @@
 
 import { motion } from 'motion/react';
 import { useState, useRef, MouseEvent, TouchEvent, useEffect } from 'react';
+import { Volume2, VolumeX } from 'lucide-react';
 import Navbar from './Navbar';
 import CustomCursor from './CustomCursor';
 import { useLanguage } from './LanguageContext';
@@ -85,10 +86,21 @@ function BeforeAfterSlider() {
 
 export default function Showroom({ onOpenContact }: { onOpenContact?: () => void }) {
   const { t } = useLanguage() as any;
+  const [isMuted, setIsMuted] = useState(true);
+  const videoRef = useRef<HTMLVideoElement>(null);
 
   useEffect(() => {
     document.title = "Showroom | SKOL AI Kreativni Studio";
   }, []);
+
+  const handleToggleMute = (e: MouseEvent<HTMLButtonElement>) => {
+    e.preventDefault();
+    e.stopPropagation();
+    if (videoRef.current) {
+      videoRef.current.muted = !isMuted;
+      setIsMuted(!isMuted);
+    }
+  };
 
   return (
     <div className="min-h-screen bg-[#0a0a0a] text-white font-sans selection:bg-cyan-500/30">
@@ -186,16 +198,26 @@ export default function Showroom({ onOpenContact }: { onOpenContact?: () => void
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, amount: 0.1 }}
             transition={{ duration: 0.6, delay: 0.2 }}
-            className="md:col-span-1 lg:col-span-1 row-span-1 md:row-span-2 group relative overflow-hidden rounded-2xl bg-[#000000] border border-white/10 transition-all duration-500 hover:border-[#ff00ff]/50 hover:shadow-[0_0_30px_rgba(255,0,255,0.2)] cursor-pointer transform-gpu will-change-transform"
+            className="md:col-span-1 lg:col-span-1 row-span-1 md:row-span-2 relative overflow-hidden rounded-2xl bg-[#000000] border border-white/10 transition-all duration-500 hover:border-[#ff00ff]/50 hover:shadow-[0_0_30px_rgba(255,0,255,0.2)] cursor-pointer transform-gpu will-change-transform"
           >
-            <video 
-              src="https://res.cloudinary.com/ddl75cyhk/video/upload/v1773247789/ai-agencija-skol-ai-virtualni-ambasador_jnpxz1.mp4"
-              autoPlay 
-              loop 
-              muted 
-              playsInline
-              className="w-full h-full object-cover rounded-2xl"
-            />
+            <div className="relative group rounded-2xl overflow-hidden shadow-2xl shadow-cyan-500/10 w-full h-full">
+              <video 
+                ref={videoRef}
+                src="https://res.cloudinary.com/ddl75cyhk/video/upload/v1773247789/ai-agencija-skol-ai-virtualni-ambasador_jnpxz1.mp4"
+                autoPlay 
+                loop 
+                muted={isMuted}
+                playsInline
+                className="w-full h-full object-cover rounded-2xl"
+              />
+              <button
+                onClick={handleToggleMute}
+                className="absolute bottom-4 right-4 z-20 p-2.5 rounded-full bg-black/60 text-white border border-white/10 backdrop-blur-sm shadow-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300 hover:scale-110 active:scale-95"
+                aria-label={isMuted ? "Unmute video" : "Mute video"}
+              >
+                {isMuted ? <VolumeX size={22} strokeWidth={1.5} /> : <Volume2 size={22} strokeWidth={1.5} />}
+              </button>
+            </div>
           </motion.div>
 
           {/* Item 3: Square (ZGORAJ DESNO) */}
