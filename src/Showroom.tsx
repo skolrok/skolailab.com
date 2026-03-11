@@ -180,33 +180,22 @@ export default function Showroom({ onOpenContact }: { onOpenContact?: () => void
             </div>
           </motion.div>
 
-          {/* Item 2: Vertical Tall (SREDINSKI PORTRET) */}
+          {/* Item 2: Vertical Tall (SREDINSKI PORTRET) - AI Ambassador Video */}
           <motion.div 
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, amount: 0.1 }}
             transition={{ duration: 0.6, delay: 0.2 }}
-            className="md:col-span-1 lg:col-span-1 row-span-1 md:row-span-2 group relative overflow-hidden rounded-2xl bg-[#000000] border border-white/10 transition-all duration-500 hover:border-[#ff00ff]/50 hover:shadow-[0_0_30px_rgba(255,0,255,0.2)] cursor-crosshair transform-gpu will-change-transform flex justify-center items-center"
+            className="md:col-span-1 lg:col-span-1 row-span-1 md:row-span-2 group relative overflow-hidden rounded-2xl bg-[#000000] border border-white/10 transition-all duration-500 hover:border-[#ff00ff]/50 hover:shadow-[0_0_30px_rgba(255,0,255,0.2)] cursor-pointer transform-gpu will-change-transform"
           >
-            <style>
-              {`
-                @keyframes blink {
-                  0%, 100% { opacity: 1; color: #888888; }
-                  50% { opacity: 0.3; color: #444444; }
-                }
-                .coming-soon-text {
-                  font-family: 'Courier New', Courier, monospace;
-                  font-size: 12px;
-                  md:font-size: 14px;
-                  font-weight: 500;
-                  letter-spacing: 0.3em;
-                  text-transform: uppercase;
-                  animation: blink 2s infinite ease-in-out;
-                  user-select: none;
-                }
-              `}
-            </style>
-            <div className="coming-soon-text">{t.showroom.placeholder}</div>
+            <video 
+              src="https://res.cloudinary.com/ddl75cyhk/video/upload/v1773247789/ai-agencija-skol-ai-virtualni-ambasador_jnpxz1.mp4"
+              autoPlay 
+              loop 
+              muted 
+              playsInline
+              className="w-full h-full object-cover rounded-2xl"
+            />
           </motion.div>
 
           {/* Item 3: Square (ZGORAJ DESNO) */}
