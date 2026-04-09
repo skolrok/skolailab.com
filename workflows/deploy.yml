@@ -2,8 +2,8 @@ name: Deploy to GitHub Pages
 
 on:
   push:
-    branches: ['main']
-  workflow_dispatch:
+    branches: [ main ]
+  workflow_dispatch:        # Omogoča ročni zagon
 
 permissions:
   contents: read
@@ -11,41 +11,41 @@ permissions:
   id-token: write
 
 concurrency:
-  group: 'pages'
+  group: "pages"
   cancel-in-progress: true
 
 jobs:
-  build:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v4
-      - name: Setup Node
-        uses: actions/setup-node@v4
-        with:
-          node-version: 20
-      - name: Install dependencies
-        run: |
-          rm -f package-lock.json
-          npm install
-      - name: Build
-        run: npm run build
-      - name: Create Sitemap
-        run: |
-          echo '<?xml version="1.0" encoding="UTF-8"?><urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"><url><loc>https://skolailab.com/</loc><changefreq>weekly</changefreq><priority>1.0</priority></url><url><loc>https://skolailab.com/#/storitve</loc><changefreq>monthly</changefreq><priority>0.8</priority></url><url><loc>https://skolailab.com/#/showroom</loc><changefreq>monthly</changefreq><priority>0.8</priority></url><url><loc>https://skolailab.com/#/vibecoding</loc><changefreq>monthly</changefreq><priority>0.8</priority></url></urlset>' > dist/sitemap.xml
-      - name: Upload artifact
-        uses: actions/upload-pages-artifact@v3
-        with:
-          path: ./dist
-
   deploy:
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
-    needs: build
+
     runs-on: ubuntu-latest
-    name: Deploy
+
     steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build
+        run: npm run build
+
+      - name: Setup GitHub Pages
+        uses: actions/configure-pages@v5
+
+      - name: Upload build artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: './dist'
+
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
