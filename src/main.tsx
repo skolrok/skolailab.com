@@ -7,7 +7,7 @@ import { LanguageProvider } from './LanguageContext';
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
-    <LanguageProvider>
+    <LanguageProvider> 
       <HashRouter>
         <App />
       </HashRouter>
