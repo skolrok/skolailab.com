@@ -27,19 +27,26 @@ export default function ContactModal({ isOpen, onClose }: { isOpen: boolean; onC
     setError(null);
 
     const formData = new FormData(e.currentTarget);
+    
+    // 1. YOUR ACCESS KEY
     formData.append("access_key", "274f2d37-ff0b-46e2-9215-475914fb26b8");
-
-    const object = Object.fromEntries(formData);
-    const json = JSON.stringify(object);
+    
+    // 2. CUSTOMIZE SENDER NAME
+    formData.append("from_name", "Nov lead - SKOL AI");
+    
+    // 3. CUSTOMIZE SUBJECT
+    formData.append("subject", "🚀 Novo povpraševanje - SKOL AI Kreativni Studio!");
+    
+    // 4. SET REPLY-TO
+    const clientEmail = formData.get("email") as string;
+    if (clientEmail) {
+      formData.append("replyto", clientEmail);
+    }
 
     try {
       const response = await fetch("https://api.web3forms.com/submit", {
         method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          Accept: "application/json"
-        },
-        body: json
+        body: formData
       });
       const result = await response.json();
       if (result.success) {
