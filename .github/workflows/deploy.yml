@@ -1,0 +1,54 @@
+name: Skol AI - Build & Deploy
+
+on:
+  # Avtomatsko pošlje, ko shraniš novo kodo
+  push:
+    branches: ["main"]
+  # USTVARI GUMB ZA ROČNO SPROŽITEV
+  workflow_dispatch:
+
+# Pravice, ki jih GitHub potrebuje za objavo na Pages
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: "pages"
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Prenos kode (Checkout)
+        uses: actions/checkout@v4
+
+      - name: Nastavitev Node.js okolja
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Instalacija paketov
+        run: npm install
+
+      - name: Build aplikacije (Pretvorba v brskalniku prijazno kodo)
+        run: npm run build
+
+      - name: Priprava končnih datotek za objavo
+        uses: actions/upload-pages-artifact@v3
+        with:
+          # Večina AI orodij (kot Vite) zgradi končno stran v mapo 'dist'. 
+          # Če tvoj projekt ustvari mapo 'build', zamenjaj './dist' z './build'
+          path: ./dist
+
+  deploy:
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    needs: build
+    steps:
+      - name: Objava na spletu
+        id: deployment
+        uses: actions/deploy-pages@v4
