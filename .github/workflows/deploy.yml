@@ -1,10 +1,7 @@
-name: Skol AI - Ročni Deploy
+name: Skol AI - Ročni Deploy (Vite)
 
 on:
-  # 1. Tole ustvari gumb "Run workflow" za ročni zagon!
   workflow_dispatch:
-  
-  # 2. Avtomatski zagon ob vsakem shranjevanju na glavno vejo
   push:
     branches:
       - main
@@ -28,15 +25,25 @@ jobs:
       - name: 📥 Prenos kode
         uses: actions/checkout@v4
 
+      - name: ⚙️ Nastavitev Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: 📦 Namestitev paketov
+        run: npm install
+
+      - name: 🏗️ Gradnja projekta (Build)
+        run: npm run build
+
       - name: ⚙️ Nastavitev GitHub Pages
         uses: actions/configure-pages@v4
 
       - name: 📤 Priprava datotek za objavo
         uses: actions/upload-pages-artifact@v3
         with:
-          # Če imaš navaden HTML, pusti '.'
-          # Če uporabljaš React/Vite in moraš stran "zgraditi", bo tu morda pisalo './dist'
-          path: '.'
+          # TUKAJ JE BILA NAPAKA: Vite mora objaviti mapo 'dist'!
+          path: './dist'
 
       - name: 🚀 Objava na spletni strani (Deploy)
         id: deployment
