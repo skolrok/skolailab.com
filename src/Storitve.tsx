@@ -7,7 +7,6 @@ import { motion } from 'motion/react';
 import { useLocation } from 'react-router-dom';
 import { useEffect } from 'react';
 import Navbar from './Navbar';
-import CustomCursor from './CustomCursor';
 import { useLanguage } from './LanguageContext';
 
 export default function Storitve({ onOpenContact }: { onOpenContact?: () => void }) {
@@ -93,7 +92,6 @@ export default function Storitve({ onOpenContact }: { onOpenContact?: () => void
 
   return (
     <div className="min-h-screen bg-[#0a0a0a] text-white font-sans selection:bg-cyan-500/30">
-      <CustomCursor />
       <Navbar />
 
       {/* 1. Hero Sekcija */}

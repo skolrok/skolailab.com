@@ -12,83 +12,9 @@ import Showroom from './Showroom';
 import Vibecoding from './Vibecoding';
 import Navbar from './Navbar';
 import ContactModal from './ContactModal';
-import CustomCursor from './CustomCursor';
 import Preloader from './Preloader';
+import FeaturedProject from './FeaturedProject';
 import { useLanguage } from './LanguageContext';
-
-function BeforeAfterSlider() {
-  const [sliderPosition, setSliderPosition] = useState(50);
-  const containerRef = useRef<HTMLDivElement>(null);
-
-  const handleMove = (clientX: number) => {
-    if (!containerRef.current) return;
-    const rect = containerRef.current.getBoundingClientRect();
-    const x = Math.max(0, Math.min(clientX - rect.left, rect.width));
-    const percent = (x / rect.width) * 100;
-    setSliderPosition(percent);
-  };
-
-  const handleMouseMove = (e: MouseEvent) => {
-    if (e.buttons !== 1) return;
-    handleMove(e.clientX);
-  };
-
-  const handleTouchMove = (e: TouchEvent) => {
-    handleMove(e.touches[0].clientX);
-  };
-
-  return (
-    <div 
-      ref={containerRef}
-      className="relative w-full aspect-[4/3] md:aspect-[21/9] max-h-[80vh] overflow-hidden rounded-3xl cursor-ew-resize select-none border border-white/10"
-      onMouseMove={handleMouseMove}
-      onTouchMove={handleTouchMove}
-      onMouseDown={(e) => handleMove(e.clientX)}
-    >
-      {/* After Image (Background) */}
-      <div className="absolute inset-0 w-full h-full">
-        <img 
-          src="https://i.ibb.co/4n6SC4zY/skol-ai-kreativni-studio-umetna-inteligenca-oglasi.webp" 
-          alt="skol ai kreativni studio umetna inteligenca oglasi" 
-          className="w-full h-full object-cover object-top" 
-          referrerPolicy="no-referrer" 
-        />
-        <div className="absolute bottom-6 right-6 bg-black/60 backdrop-blur-md px-4 py-2 rounded-full text-xs md:text-sm font-mono text-[#00f0ff] border border-[#00f0ff]/30 shadow-[0_0_15px_rgba(0,240,255,0.2)]">
-          SKOL AI Custom
-        </div>
-      </div>
-
-      {/* Before Image (Foreground, clipped) */}
-      <div 
-        className="absolute inset-0 w-full h-full overflow-hidden"
-        style={{ clipPath: `inset(0 ${100 - sliderPosition}% 0 0)` }}
-      >
-        <img 
-          src="https://i.ibb.co/5hTh3PMY/izdelava-spletnih-strani-slabe-fotografije-prej.webp" 
-          alt="izdelava spletnih strani slabe fotografije prej" 
-          className="w-full h-full object-cover object-top" 
-          referrerPolicy="no-referrer" 
-        />
-        <div className="absolute bottom-6 left-6 bg-black/60 backdrop-blur-md px-4 py-2 rounded-full text-xs md:text-sm font-mono text-gray-300 border border-white/10">
-          Generični Stock
-        </div>
-      </div>
-
-      {/* Slider Line */}
-      <div 
-        className="absolute top-0 bottom-0 w-1 bg-[#00f0ff] shadow-[0_0_15px_#00f0ff] cursor-ew-resize"
-        style={{ left: `${sliderPosition}%`, transform: 'translateX(-50%)' }}
-      >
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-10 h-10 bg-[#0a0a0a] border-2 border-[#00f0ff] rounded-full flex items-center justify-center shadow-[0_0_20px_#00f0ff]">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#00f0ff" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-            <path d="M15 18l6-6-6-6" />
-            <path d="M9 18l-6-6 6-6" />
-          </svg>
-        </div>
-      </div>
-    </div>
-  );
-}
 
 function AccordionItem({ question, answer, isOpen, onClick }: { question: string, answer: string, isOpen: boolean, onClick: () => void, key?: any }) {
   return (
@@ -214,7 +140,6 @@ function HomeContent({ onOpenContact }: { onOpenContact: () => void }) {
 
   return (
     <div className="min-h-screen bg-[#0a0a0a] text-white font-sans selection:bg-cyan-500/30">
-      <CustomCursor />
       <Navbar />
       
       {/* 1. Hero Section: VIZUALNA DOMINACIJA */}
@@ -386,30 +311,8 @@ function HomeContent({ onOpenContact }: { onOpenContact: () => void }) {
         </div>
       </section>
 
-      {/* 3. Sekcija: NAŠ VPLIV */}
-      <section className="relative px-4 py-16 md:px-12 lg:py-32 max-w-7xl mx-auto">
-        <div className="mb-12 md:mb-16">
-          <motion.h2 
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, amount: 0.1 }}
-            transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-            className="font-display text-3xl md:text-5xl lg:text-6xl font-bold text-center uppercase tracking-tight mb-12 md:mb-16 transform-gpu will-change-transform"
-          >
-            {t.impact.title}
-          </motion.h2>
-
-          <motion.div
-            initial={{ opacity: 0, scale: 0.95 }}
-            whileInView={{ opacity: 1, scale: 1 }}
-            viewport={{ once: true, amount: 0.1 }}
-            transition={{ duration: 0.8, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
-            className="transform-gpu will-change-transform"
-          >
-            <BeforeAfterSlider />
-          </motion.div>
-        </div>
-      </section>
+      {/* Featured Project Section */}
+      <FeaturedProject />
 
       {/* 4. Sekcija: KREATIVNA VIZIJA */}
       <section className="relative px-4 py-16 md:px-12 lg:py-40 max-w-7xl mx-auto">
@@ -554,7 +457,6 @@ export default function App() {
         <Preloader key="preloader" onComplete={handlePreloaderComplete} />
       ) : (
         <div key="content">
-          <CustomCursor />
           <Navbar />
           <ContactModal isOpen={isContactModalOpen} onClose={() => setIsContactModalOpen(false)} />
           <Routes>

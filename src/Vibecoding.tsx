@@ -6,7 +6,6 @@
 import { motion } from 'motion/react';
 import React, { useEffect } from 'react';
 import Navbar from './Navbar';
-import CustomCursor from './CustomCursor';
 import { useLanguage } from './LanguageContext';
 
 export default function Vibecoding({ onOpenContact }: { onOpenContact?: () => void }) {
@@ -18,7 +17,6 @@ export default function Vibecoding({ onOpenContact }: { onOpenContact?: () => vo
 
   return (
     <div className="min-h-screen bg-[#0a0a0a] text-white font-sans selection:bg-cyan-500/30">
-      <CustomCursor />
       <Navbar />
 
       {/* Hero Sekcija */}

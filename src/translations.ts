@@ -66,6 +66,14 @@ export const translations = {
         }
       ]
     },
+    featuredProject: {
+      sectionTitle: 'Izpostavljen Projekt.',
+      badges: ['UI/UX Dizajn', 'Avtomatizacija', 'Premium Web'],
+      title: 'Solimat',
+      description: 'Celovita digitalna prenova in postavitev bliskovito hitre spletne strani. Vzpostavili smo napredno analitično infrastrukturo, pametne kontaktne obrazce in brezhibno uporabniško izkušnjo, ki obiskovalce spreminja v stranke.',
+      cta: 'Oglej si v živo',
+      livePreview: 'Live Preview'
+    },
     showroom: {
       title: 'SHOWROOM.',
       subtitle: '[ KJER POVPREČJE UMRE IN ESTETIKA PREVZAME NADZOR. ]',
@@ -79,7 +87,13 @@ export const translations = {
         stock: { title: 'AI STOCK PO MERI', desc: 'Hipnotični produktni vizuali' },
         ads: { title: 'HIGH-PERFORMANCE OGLASI', desc: 'Surova avtomobilska energija' },
         action: { title: 'FOTOREALISTIČNA AKCIJA', desc: 'Dinamična športna kinetika' },
-        influencers: { title: 'VIRTUALNI VPLIVNEŽI', desc: 'AI Modeli' }
+        influencers: { title: 'VIRTUALNI VPLIVNEŽI', desc: 'AI Modeli' },
+        web: {
+          tag: 'Digitalni Produkt',
+          title: 'Solimat – Celovita prenova',
+          desc: 'Celostna digitalna transformacija. Zgradili smo sodobno, bliskovito hitro spletno platformo z napredno analitiko in pametnimi obrazci, ki obiskovalce spreminja v stranke.',
+          cta: 'Oglej si v živo ➔'
+        }
       }
     },
     services_page: {
@@ -210,6 +224,14 @@ export const translations = {
         }
       ]
     },
+    featuredProject: {
+      sectionTitle: 'Featured Project.',
+      badges: ['UI/UX Design', 'Automation', 'Premium Web'],
+      title: 'Solimat',
+      description: 'Complete digital transformation and deployment of a lightning-fast custom web platform. We established advanced analytical infrastructure, smart forms, and flawless user journeys that convert visitors into clients.',
+      cta: 'Live Preview',
+      livePreview: 'Live Preview'
+    },
     showroom: {
       title: 'SHOWROOM.',
       subtitle: '[ WHERE AVERAGE DIES AND AESTHETICS TAKE CONTROL. ]',
@@ -223,7 +245,13 @@ export const translations = {
         stock: { title: 'CUSTOM AI STOCK', desc: 'Hypnotic product visuals' },
         ads: { title: 'HIGH-PERFORMANCE ADS', desc: 'Raw automotive energy' },
         action: { title: 'PHOTOREALISTIC ACTION', desc: 'Dynamic sports kinetics' },
-        influencers: { title: 'VIRTUAL INFLUENCERS', desc: 'AI Models' }
+        influencers: { title: 'VIRTUAL INFLUENCERS', desc: 'AI Models' },
+        web: {
+          tag: 'Digital Product',
+          title: 'Solimat – Full Digital Overhaul',
+          desc: 'Complete digital transformation. We built a modern, lightning-fast web platform with advanced analytics and smart forms designed to convert visitors into clients.',
+          cta: 'Live Preview ➔'
+        }
       }
     },
     services_page: {
