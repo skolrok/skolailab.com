@@ -31,8 +31,8 @@ export default function FeaturedProject() {
           <div className="absolute inset-0 w-full h-full transition-transform duration-700 group-hover:scale-105">
             {/* Elegant placeholder image representing a website aesthetic */}
             <img 
-              src="/assets/images/solimat-mockup.png" 
-              alt="Solimat Website Mockup" 
+              src="https://res.cloudinary.com/ddl75cyhk/image/upload/v1776931364/solimat-mockup.webp" 
+              alt="Solimat Web Design Mockup" 
               className="w-full h-full object-cover object-center opacity-70 mix-blend-luminosity group-hover:mix-blend-normal group-hover:opacity-100 transition-all duration-700"
             />
           </div>

@@ -196,8 +196,8 @@ export default function Showroom({ onOpenContact }: { onOpenContact?: () => void
             <div className="w-full md:w-3/5 h-[300px] md:h-auto relative overflow-hidden order-2 justify-center p-8 bg-black">
               <div className="absolute inset-0 w-full h-full transition-transform duration-700 group-hover:scale-105">
                 <img 
-                  src="https://images.unsplash.com/photo-1517694712202-14dd9538aa97?q=80&w=2070&auto=format&fit=crop" 
-                  alt="3D Laptop Mockup Placeholder" 
+                  src="https://res.cloudinary.com/ddl75cyhk/image/upload/v1776931870/solimat-mockup-skolai.webp" 
+                  alt="Solimat Web Design 3D Mockup" 
                   className="w-full h-full object-cover opacity-30 mix-blend-luminosity group-hover:mix-blend-normal group-hover:opacity-70 transition-all duration-700" 
                 />
               </div>
