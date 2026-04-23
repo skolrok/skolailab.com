@@ -69,9 +69,9 @@ export const translations = {
     featuredProject: {
       sectionTitle: 'Izpostavljen Projekt.',
       badges: ['UI/UX Dizajn', 'Avtomatizacija', 'Premium Web'],
-      title: 'Solimat',
+      title: 'SOLIMAT – CELOVITA PRENOVA',
       description: 'Celovita digitalna prenova in postavitev bliskovito hitre spletne strani. Vzpostavili smo napredno analitično infrastrukturo, pametne kontaktne obrazce in brezhibno uporabniško izkušnjo, ki obiskovalce spreminja v stranke.',
-      cta: 'Oglej si v živo',
+      cta: 'OGLEJ SI V ŽIVO ➔',
       livePreview: 'Live Preview'
     },
     showroom: {
@@ -227,9 +227,9 @@ export const translations = {
     featuredProject: {
       sectionTitle: 'Featured Project.',
       badges: ['UI/UX Design', 'Automation', 'Premium Web'],
-      title: 'Solimat',
-      description: 'Complete digital transformation and deployment of a lightning-fast custom web platform. We established advanced analytical infrastructure, smart forms, and flawless user journeys that convert visitors into clients.',
-      cta: 'Live Preview',
+      title: 'SOLIMAT – FULL DIGITAL OVERHAUL',
+      description: 'Complete digital transformation and creation of a lightning-fast web platform. We established a sophisticated analytical infrastructure, smart contact forms, and a seamless user experience that converts visitors into customers.',
+      cta: 'LIVE PREVIEW ➔',
       livePreview: 'Live Preview'
     },
     showroom: {

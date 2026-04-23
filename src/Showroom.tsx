@@ -69,8 +69,8 @@ export default function Showroom({ onOpenContact }: { onOpenContact?: () => void
           {t.showroom.stockTitle.split('&')[0]} & <span className="text-transparent bg-clip-text bg-gradient-to-r from-white to-gray-500">{t.showroom.stockTitle.split('&')[1]}</span>
         </motion.h2>
 
-        {/* Bento Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-4 md:gap-6 auto-rows-[250px] md:auto-rows-[350px]">
+        {/* Gallery Container (Masonry Layout) */}
+        <div className="columns-1 sm:columns-2 md:columns-3 gap-6">
           
           {/* Item 1: Horizontal Wide (ZGORAJ LEVO) */}
           <motion.div 
@@ -78,7 +78,7 @@ export default function Showroom({ onOpenContact }: { onOpenContact?: () => void
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, amount: 0.1 }}
             transition={{ duration: 0.6, delay: 0.1 }}
-            className="showroom-item md:col-span-2 lg:col-span-2 row-span-1 group relative overflow-hidden rounded-2xl bg-[#111] border border-white/10 transition-all duration-500 hover:border-[#00f0ff]/50 hover:shadow-[0_0_30px_rgba(0,240,255,0.2)] cursor-pointer transform-gpu will-change-transform"
+            className="showroom-item break-inside-avoid mb-6 w-full aspect-video group relative overflow-hidden rounded-2xl bg-[#111] border border-white/10 transition-all duration-500 hover:border-[#00f0ff]/50 hover:shadow-[0_0_30px_rgba(0,240,255,0.2)] cursor-pointer transform-gpu will-change-transform"
           >
             <div className="absolute inset-0 w-full h-full transition-transform duration-500 group-hover:scale-105">
               <video className="showroom-video" autoPlay loop muted playsInline style={{ width: '100%', height: '100%', objectFit: 'cover' }}>
@@ -99,7 +99,7 @@ export default function Showroom({ onOpenContact }: { onOpenContact?: () => void
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, amount: 0.1 }}
             transition={{ duration: 0.6, delay: 0.2 }}
-            className="md:col-span-1 lg:col-span-1 row-span-1 md:row-span-2 relative overflow-hidden rounded-2xl bg-[#000000] border border-white/10 transition-all duration-500 hover:border-[#ff00ff]/50 hover:shadow-[0_0_30px_rgba(255,0,255,0.2)] cursor-pointer transform-gpu will-change-transform"
+            className="break-inside-avoid mb-6 w-full aspect-[3/4] relative overflow-hidden rounded-2xl bg-[#000000] border border-white/10 transition-all duration-500 hover:border-[#ff00ff]/50 hover:shadow-[0_0_30px_rgba(255,0,255,0.2)] cursor-pointer transform-gpu will-change-transform"
           >
             <div className="relative group rounded-2xl overflow-hidden shadow-2xl shadow-cyan-500/10 w-full h-full">
               <video 
@@ -127,7 +127,7 @@ export default function Showroom({ onOpenContact }: { onOpenContact?: () => void
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, amount: 0.1 }}
             transition={{ duration: 0.6, delay: 0.3 }}
-            className="showroom-item md:col-span-1 lg:col-span-1 row-span-1 group relative overflow-hidden rounded-2xl bg-[#111] border border-white/10 transition-all duration-500 hover:border-[#00f0ff]/50 hover:shadow-[0_0_30px_rgba(0,240,255,0.2)] cursor-pointer transform-gpu will-change-transform"
+            className="showroom-item break-inside-avoid mb-6 w-full aspect-square group relative overflow-hidden rounded-2xl bg-[#111] border border-white/10 transition-all duration-500 hover:border-[#00f0ff]/50 hover:shadow-[0_0_30px_rgba(0,240,255,0.2)] cursor-pointer transform-gpu will-change-transform"
           >
             <div className="absolute inset-0 w-full h-full transition-transform duration-500 group-hover:scale-105">
               <video className="showroom-video" autoPlay loop muted playsInline style={{ width: '100%', height: '100%', objectFit: 'cover' }}>
@@ -148,7 +148,7 @@ export default function Showroom({ onOpenContact }: { onOpenContact?: () => void
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, amount: 0.1 }}
             transition={{ duration: 0.6, delay: 0.4 }}
-            className="showroom-item md:col-span-1 lg:col-span-1 row-span-1 group relative overflow-hidden rounded-2xl bg-[#111] border border-white/10 transition-all duration-500 hover:border-[#ff00ff]/50 hover:shadow-[0_0_30px_rgba(255,0,255,0.2)] cursor-pointer transform-gpu will-change-transform"
+            className="showroom-item break-inside-avoid mb-6 w-full aspect-square group relative overflow-hidden rounded-2xl bg-[#111] border border-white/10 transition-all duration-500 hover:border-[#ff00ff]/50 hover:shadow-[0_0_30px_rgba(255,0,255,0.2)] cursor-pointer transform-gpu will-change-transform"
           >
             <div className="absolute inset-0 w-full h-full transition-transform duration-500 group-hover:scale-105">
               <video className="showroom-video" autoPlay loop muted playsInline style={{ width: '100%', height: '100%', objectFit: 'cover' }}>
@@ -169,7 +169,7 @@ export default function Showroom({ onOpenContact }: { onOpenContact?: () => void
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, amount: 0.1 }}
             transition={{ duration: 0.6, delay: 0.5 }}
-            className="showroom-item md:col-span-2 lg:col-span-2 row-span-1 group relative overflow-hidden rounded-2xl bg-[#111] border border-white/10 transition-all duration-500 hover:border-[#00f0ff]/50 hover:shadow-[0_0_30px_rgba(0,240,255,0.2)] cursor-pointer transform-gpu will-change-transform"
+            className="showroom-item break-inside-avoid mb-6 w-full aspect-video group relative overflow-hidden rounded-2xl bg-[#111] border border-white/10 transition-all duration-500 hover:border-[#00f0ff]/50 hover:shadow-[0_0_30px_rgba(0,240,255,0.2)] cursor-pointer transform-gpu will-change-transform"
           >
             <div className="absolute inset-0 w-full h-full transition-transform duration-500 group-hover:scale-105">
               <video className="showroom-video" autoPlay loop muted playsInline style={{ width: '100%', height: '100%', objectFit: 'cover' }}>
@@ -184,7 +184,10 @@ export default function Showroom({ onOpenContact }: { onOpenContact?: () => void
             </div>
           </motion.div>
 
-          {/* Item 6: Web Design Full Width Feature */}
+        </div>
+
+        {/* Item 6: Web Design Full Width Feature */}
+        <div className="w-full inline-block">
           <motion.div 
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
